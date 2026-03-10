@@ -592,7 +592,7 @@ export default function CV() {
           </div>
 
           {/* Summary */}
-          {(() => { const [ref,vis] = useInView(); return (
+          {(() => { return (
             <div ref={ref} style={{
               fontSize:11.5,color:t.sub,lineHeight:1.8,marginBottom:6,
               padding:"13px 17px",background:t.summaryBg,
