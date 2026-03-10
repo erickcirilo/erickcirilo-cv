@@ -422,7 +422,7 @@ function TLItem({ dates, company, title, bullets, delay=0, t }) {
         background:hov?t.tlHover:"transparent",
         borderRadius:8,padding:"10px 12px",
         border:`1px solid ${hov?"rgba(90,141,181,0.2)":"transparent"}`,
-        opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(20px)",
+        opacity:vis?1:0,transform:vis?(hov?"translateX(0) scale(1.02)":"translateX(0)"):"translateX(20px)",
         transition:`opacity .6s ease ${delay}ms,transform .6s ease ${delay}ms,background .3s,border .3s`,
       }}>
         <div style={{fontSize:9,color:t.accent,fontWeight:700,marginBottom:2,letterSpacing:0.5}}>{dates}</div>
@@ -442,15 +442,102 @@ function TLItem({ dates, company, title, bullets, delay=0, t }) {
 
 function SummarySection({ t }) {
   const [ref, vis] = useInView();
+  const [hov, setHov] = useState(false);
   return (
-    <div ref={ref} style={{
-      fontSize:11.5,color:t.sub,lineHeight:1.8,marginBottom:6,
-      padding:"13px 17px",background:t.summaryBg,
-      borderLeft:`3px solid ${t.accent}`,borderRadius:"0 8px 8px 0",
-      opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(-12px)",
-      transition:"all .7s ease .2s",
-    }}>
+    <div 
+      ref={ref} 
+      onMouseEnter={() => setHov(true)} 
+      onMouseLeave={() => setHov(false)}
+      style={{
+        fontSize:11.5,color:t.sub,lineHeight:1.8,marginBottom:6,
+        padding:"13px 17px",background:t.summaryBg,
+        borderLeft:`3px solid ${t.accent}`,borderRadius:"0 8px 8px 0",
+        opacity:vis?1:0,transform:vis?(hov?"translateX(0) scale(1.08)":"translateX(0)"):"translateX(-12px)",
+        transition:"all .7s ease .2s",
+      }}>
       Soy un apasionado de la tecnología y el análisis de datos, con más de 15 años de trayectoria en la gestión de proyectos y gobernanza de TI. Mi enfoque principal es la gestión inteligente de datos y la ejecución de proyectos sobre plataformas Microsoft 365 (Power Platform, Azure), siempre cuidando la calidad y el cumplimiento de las normas de privacidad del departamento. Me destaco por mi capacidad de coordinación, trabajo en equipo y un nivel de inglés avanzado, lo que me permite participar en iniciativas en entornos globales con total naturalidad.
+    </div>
+  );
+}
+
+function ExperienceSection({ t }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div 
+      onMouseEnter={() => setHov(true)} 
+      onMouseLeave={() => setHov(false)}
+      style={{
+        transform:hov?"scale(1.08)":"scale(1)",
+        transformOrigin:"top left",
+        transition:"transform .3s ease",
+      }}>
+      <SecTitle t={t}>Experiencia</SecTitle>
+      <div style={{position:"relative",paddingLeft:18}}>
+        <div style={{position:"absolute",left:5,top:0,bottom:0,width:1,background:`linear-gradient(to bottom,${t.accent},transparent)`}}/>
+        <TLItem t={t} dates="2015 – Presente" company="La Iglesia de Jesucristo de los Santos de los Últimos Días" title="Senior Data Analyst" delay={80}
+          bullets={[
+            <><strong>Dirección de Infraestructura y Arquitectura de Datos:</strong> Lidero el ciclo integral de gestión de información (extracción, análisis y visualización estratégica), transformando datos complejos en reportes de alto impacto que facilitan la toma de decisiones ejecutivas y operativas.</>,
+            <><strong>Gobernanza, Riesgos y Cumplimiento (GRC):</strong> Superviso la gobernanza de datos de los centros de servicio del área, identificando riesgos de TI y diseñando controles de seguridad y privacidad en coordinación directa con la oficina de ICO (Information Care Office) de Headquarters.</>,
+            <><strong>Gestión de Proyectos y Expansión:</strong> Desarrollo y ejecuto planes de proyectos para la creación de nuevas unidades y estacas, alineando los requisitos globales con las directrices específicas del área SAS, bajo estrictos estándares de calidad y plazos de entrega.</>,
+            <><strong>Excelencia en Reportabilidad Operativa:</strong> Garantizo una precisión del 100% en la recolección y análisis de datos para informes trimestrales, anuales y reportes de mantenimiento de registros destinados a la sede central.</>,
+            <><strong>Capacitación y Gestión del Cambio:</strong> Diseño materiales y programas de formación para fortalecer la adopción de herramientas tecnológicas y procesos oficiales por parte del liderazgo local, asegurando su correcta transición a los sistemas del área.</>,
+          ]}/>
+        <TLItem t={t} dates="2022" company="San Antonio Regional Hospital, CA." title="Social Media Marketing Intern" delay={160}
+          bullets={[
+            "Gestioné un equipo de 5 especialistas en redacción de contenidos, SEO y diseño gráfico, alineando sus esfuerzos con los objetivos de marketing de la organización.",
+            "Diseñé e implementé campañas de comunicación digital que fomentaron la participación de miembros y líderes locales.",
+            "Administré más del 75% del contenido institucional en diversos CMS, asegurando su actualización, precisión y coherencia.",
+          ]}/>
+      </div>
+    </div>
+  );
+}
+
+function VolunteerSection({ t }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div 
+      onMouseEnter={() => setHov(true)} 
+      onMouseLeave={() => setHov(false)}
+      style={{
+        transform:hov?"scale(1.08)":"scale(1)",
+        transformOrigin:"top left",
+        transition:"transform .3s ease",
+      }}>
+      <SecTitle t={t}>Voluntariado</SecTitle>
+      <div style={{position:"relative",paddingLeft:18}}>
+        <div style={{position:"absolute",left:5,top:0,bottom:0,width:1,background:`linear-gradient(to bottom,${t.accent},transparent)`}}/>
+        <TLItem t={t} dates="2019 – 2022" company="Fundación Roble del Sur" title="Volunteer Experience — Digital Strategy" delay={240}
+          bullets={[
+            "Diseñé e implementé una estrategia integral de marketing en redes sociales, identificando las plataformas más adecuadas según las necesidades de la Fundación.",
+            "Elaboré informes analíticos sobre el rendimiento de campañas en múltiples plataformas, proporcionando datos clave para la toma de decisiones.",
+            "Investigué tecnologías y tendencias en redes sociales para asesorar a la Fundación en cómo optimizar su alcance e interacción con el público objetivo.",
+          ]}/>
+        <TLItem t={t} dates="2005 – 2007" company="La Iglesia de Jesucristo de los Santos de los Últimos Días" title="Misionero de Tiempo Completo — Misión Ecuador Guayaquil Sur" delay={300}
+          bullets={[
+            "Servicio misionero de tiempo completo enfocado en el trabajo comunitario y el desarrollo espiritual.",
+          ]}/>
+      </div>
+    </div>
+  );
+}
+
+function ReferencesSection({ t, mobile }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div 
+      onMouseEnter={() => setHov(true)} 
+      onMouseLeave={() => setHov(false)}
+      style={{
+        transform:hov?"scale(1.08)":"scale(1)",
+        transformOrigin:"top left",
+        transition:"transform .3s ease",
+      }}>
+      <SecTitle t={t}>Referencias</SecTitle>
+      <div style={{display:"grid",gridTemplateColumns:mobile?"1fr":"1fr 1fr",gap:14}}>
+        <RefCard t={t} name="Leonel Zivic" role="LUF Manager • FRD" phone="+54(911)3848 5388" email="zivicle@churchofjesuschrist.org" delay={100}/>
+        <RefCard t={t} name="Jeffrey Kay Anderson" role="Dir, Member & Stat Record • FRD" phone="+1 801 240-9751" email="jkanderson@churchofjesuschrist.org" delay={220}/>
+      </div>
     </div>
   );
 }
@@ -526,6 +613,7 @@ export default function CV() {
 
   useEffect(() => { setTimeout(() => setMounted(true), 80); }, []);
   useEffect(() => { if (!mobile) setDrawer(false); }, [mobile]);
+  useEffect(() => { document.title = "🎓 Erick Cirilo - CV"; }, []);
 
   const openCert = (k) => { setCert(k); setDrawer(false); };
 
@@ -611,45 +699,11 @@ export default function CV() {
           {/* Summary */}
           <SummarySection t={t}/>
 
-          <SecTitle t={t}>Experiencia</SecTitle>
-          <div style={{position:"relative",paddingLeft:18}}>
-            <div style={{position:"absolute",left:5,top:0,bottom:0,width:1,background:`linear-gradient(to bottom,${t.accent},transparent)`}}/>
-            <TLItem t={t} dates="2015 – Presente" company="La Iglesia de Jesucristo de los Santos de los Últimos Días" title="Senior Data Analyst" delay={80}
-              bullets={[
-                <><strong>Dirección de Infraestructura y Arquitectura de Datos:</strong> Lidero el ciclo integral de gestión de información (extracción, análisis y visualización estratégica), transformando datos complejos en reportes de alto impacto que facilitan la toma de decisiones ejecutivas y operativas.</>,
-                <><strong>Gobernanza, Riesgos y Cumplimiento (GRC):</strong> Superviso la gobernanza de datos de los centros de servicio del área, identificando riesgos de TI y diseñando controles de seguridad y privacidad en coordinación directa con la oficina de ICO (Information Care Office) de Headquarters.</>,
-                <><strong>Gestión de Proyectos y Expansión:</strong> Desarrollo y ejecuto planes de proyectos para la creación de nuevas unidades y estacas, alineando los requisitos globales con las directrices específicas del área SAS, bajo estrictos estándares de calidad y plazos de entrega.</>,
-                <><strong>Excelencia en Reportabilidad Operativa:</strong> Garantizo una precisión del 100% en la recolección y análisis de datos para informes trimestrales, anuales y reportes de mantenimiento de registros destinados a la sede central.</>,
-                <><strong>Capacitación y Gestión del Cambio:</strong> Diseño materiales y programas de formación para fortalecer la adopción de herramientas tecnológicas y procesos oficiales por parte del liderazgo local, asegurando su correcta transición a los sistemas del área.</>,
-              ]}/>
-            <TLItem t={t} dates="2022" company="San Antonio Regional Hospital, CA." title="Social Media Marketing Intern" delay={160}
-              bullets={[
-                "Gestioné un equipo de 5 especialistas en redacción de contenidos, SEO y diseño gráfico, alineando sus esfuerzos con los objetivos de marketing de la organización.",
-                "Diseñé e implementé campañas de comunicación digital que fomentaron la participación de miembros y líderes locales.",
-                "Administré más del 75% del contenido institucional en diversos CMS, asegurando su actualización, precisión y coherencia.",
-              ]}/>
-          </div>
+          <ExperienceSection t={t}/>
 
-          <SecTitle t={t}>Voluntariado</SecTitle>
-          <div style={{position:"relative",paddingLeft:18}}>
-            <div style={{position:"absolute",left:5,top:0,bottom:0,width:1,background:`linear-gradient(to bottom,${t.accent},transparent)`}}/>
-            <TLItem t={t} dates="2019 – 2022" company="Fundación Roble del Sur" title="Volunteer Experience — Digital Strategy" delay={240}
-              bullets={[
-                "Diseñé e implementé una estrategia integral de marketing en redes sociales, identificando las plataformas más adecuadas según las necesidades de la Fundación.",
-                "Elaboré informes analíticos sobre el rendimiento de campañas en múltiples plataformas, proporcionando datos clave para la toma de decisiones.",
-                "Investigué tecnologías y tendencias en redes sociales para asesorar a la Fundación en cómo optimizar su alcance e interacción con el público objetivo.",
-              ]}/>
-            <TLItem t={t} dates="2005 – 2007" company="La Iglesia de Jesucristo de los Santos de los Últimos Días" title="Misionero de Tiempo Completo — Misión Ecuador Guayaquil Sur" delay={300}
-              bullets={[
-                "Servicio misionero de tiempo completo enfocado en el trabajo comunitario y el desarrollo espiritual.",
-              ]}/>
-          </div>
+          <VolunteerSection t={t}/>
 
-          <SecTitle t={t}>Referencias</SecTitle>
-          <div style={{display:"grid",gridTemplateColumns:mobile?"1fr":"1fr 1fr",gap:14}}>
-            <RefCard t={t} name="Leonel Zivic" role="LUF Manager • FRD" phone="+54(911)3848 5388" email="zivicle@churchofjesuschrist.org" delay={100}/>
-            <RefCard t={t} name="Jeffrey Kay Anderson" role="Dir, Member & Stat Record • FRD" phone="+1 801 240-9751" email="jkanderson@churchofjesuschrist.org" delay={220}/>
-          </div>
+          <ReferencesSection t={t} mobile={mobile}/>
           <div style={{height:36}}/>
         </div>
       </div>
