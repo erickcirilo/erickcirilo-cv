@@ -440,6 +440,21 @@ function TLItem({ dates, company, title, bullets, delay=0, t }) {
   );
 }
 
+function SummarySection({ t }) {
+  const [ref, vis] = useInView();
+  return (
+    <div ref={ref} style={{
+      fontSize:11.5,color:t.sub,lineHeight:1.8,marginBottom:6,
+      padding:"13px 17px",background:t.summaryBg,
+      borderLeft:`3px solid ${t.accent}`,borderRadius:"0 8px 8px 0",
+      opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(-12px)",
+      transition:"all .7s ease .2s",
+    }}>
+      Soy un apasionado de la tecnología y el análisis de datos, con más de 15 años de trayectoria en la gestión de proyectos y gobernanza de TI. Mi enfoque principal es la gestión inteligente de datos y la ejecución de proyectos sobre plataformas Microsoft 365 (Power Platform, Azure), siempre cuidando la calidad y el cumplimiento de las normas de privacidad del departamento. Me destaco por mi capacidad de coordinación, trabajo en equipo y un nivel de inglés avanzado, lo que me permite participar en iniciativas en entornos globales con total naturalidad.
+    </div>
+  );
+}
+
 function StatSection() {
   const [hoveredStat, setHoveredStat] = useState(null);
   const [ref, vis] = useInView();
@@ -594,17 +609,7 @@ export default function CV() {
           </div>
 
           {/* Summary */}
-          {(() => { const [ref,vis] = useInView(); return (
-            <div ref={ref} style={{
-              fontSize:11.5,color:t.sub,lineHeight:1.8,marginBottom:6,
-              padding:"13px 17px",background:t.summaryBg,
-              borderLeft:`3px solid ${t.accent}`,borderRadius:"0 8px 8px 0",
-              opacity:vis?1:0,transform:vis?"translateX(0)":"translateX(-12px)",
-              transition:"all .7s ease .2s",
-            }}>
-              Soy un apasionado de la tecnología y el análisis de datos, con más de 15 años de trayectoria en la gestión de proyectos y gobernanza de TI. Mi enfoque principal es la gestión inteligente de datos y la ejecución de proyectos sobre plataformas Microsoft 365 (Power Platform, Azure), siempre cuidando la calidad y el cumplimiento de las normas de privacidad del departamento. Me destaco por mi capacidad de coordinación, trabajo en equipo y un nivel de inglés avanzado, lo que me permite participar en iniciativas en entornos globales con total naturalidad.
-            </div>
-          ); })()}
+          <SummarySection t={t}/>
 
           <SecTitle t={t}>Experiencia</SecTitle>
           <div style={{position:"relative",paddingLeft:18}}>
