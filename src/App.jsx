@@ -473,7 +473,7 @@ function StatSection() {
       <div 
         onMouseEnter={() => setHoveredStat("countries")}
         onMouseLeave={() => setHoveredStat(null)}
-        style={{textAlign:"center",cursor:"pointer",transition:"all .3s ease",opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(12px)",transition:"all .7s ease"}}
+        style={{textAlign:"center",cursor:"pointer",opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(12px)",transition:"all .7s ease"}}
       >
         <div style={{fontSize:26,fontWeight:800,color:"#5a8db5",fontFamily:"'Playfair Display',serif",lineHeight:1}}>
           {hoveredStat === "countries" ? (
