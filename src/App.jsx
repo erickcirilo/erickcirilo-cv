@@ -262,7 +262,7 @@ function Sidebar({ t, onCert, mounted }) {
           { flag: "🇺🇾" }
         ];
         return (
-          <div ref={ref} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,margin:"2px 0 22px"}}>
+          <div  style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,margin:"2px 0 22px"}}>
             <StatNum value={10} suffix="+" label="Años"/>
             <StatNum value={100} suffix="%" label="Precisión"/>
             {/* Countries stat - Interactive */}
@@ -374,7 +374,7 @@ function StatNum({ value, suffix, label }) {
   const [ref,vis] = useInView();
   const n = useCountUp(value, 1300, vis);
   return (
-    <div ref={ref} style={{textAlign:"center",opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(12px)",transition:"all .7s ease"}}>
+    <div  style={{textAlign:"center",opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(12px)",transition:"all .7s ease"}}>
       <div style={{fontSize:27,fontWeight:800,color:"#5a8db5",fontFamily:"'Playfair Display',serif",lineHeight:1}}>{n}{suffix}</div>
       <div style={{fontSize:9,color:"#8aafc4",marginTop:3,letterSpacing:1,textTransform:"uppercase"}}>{label}</div>
     </div>
@@ -384,7 +384,7 @@ function StatNum({ value, suffix, label }) {
 function LangBar({ label, pct }) {
   const [ref,vis] = useInView();
   return (
-    <div ref={ref} style={{marginBottom:9}}>
+    <div  style={{marginBottom:9}}>
       <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
         <span style={{fontSize:12,color:"#e8f0f8"}}>{label}</span>
         <span style={{fontSize:10,color:"#5a8db5"}}>{pct}%</span>
@@ -402,7 +402,7 @@ function Badge({ label, delay=0, onOpen }) {
   const [ref,vis] = useInView();
   const [hov,setHov] = useState(false);
   return (
-    <div ref={ref}
+    <div 
       onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
       onClick={()=>onOpen(label)}
       title={`Ver certificado: ${label}`}
@@ -429,7 +429,7 @@ function Badge({ label, delay=0, onOpen }) {
 function SecTitle({ children, t }) {
   const [ref,vis] = useInView();
   return (
-    <div ref={ref} style={{
+    <div  style={{
       fontFamily:"'Playfair Display',serif",fontSize:12,fontWeight:800,
       color:t.name,textTransform:"uppercase",letterSpacing:2.5,
       paddingBottom:6,marginBottom:10,marginTop:16,
@@ -445,7 +445,7 @@ function TLItem({ dates, company, title, bullets, delay=0, t }) {
   const [ref,vis] = useInView(0.08);
   const [hov,setHov] = useState(false);
   return (
-    <div ref={ref} style={{position:"relative",marginBottom:14}}>
+    <div  style={{position:"relative",marginBottom:14}}>
       <div style={{
         position:"absolute",left:-19,top:5,width:12,height:12,borderRadius:"50%",
         border:`2px solid ${hov?t.accentHi:t.accent}`,
@@ -479,7 +479,7 @@ function RefCard({ name, role, phone, email, delay=0, t }) {
   const [ref,vis] = useInView();
   const [hov,setHov] = useState(false);
   return (
-    <div ref={ref} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{
+    <div  onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{
       padding:"12px 14px",
       border:`1px solid ${hov?"rgba(90,141,181,0.38)":t.card.replace("1px solid ","")}`,
       borderRadius:8,
@@ -593,7 +593,7 @@ export default function CV() {
 
           {/* Summary */}
           {(() => { return (
-            <div ref={ref} style={{
+            <div  style={{
               fontSize:11.5,color:t.sub,lineHeight:1.8,marginBottom:6,
               padding:"13px 17px",background:t.summaryBg,
               borderLeft:`3px solid ${t.accent}`,borderRadius:"0 8px 8px 0",
