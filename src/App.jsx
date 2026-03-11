@@ -219,10 +219,10 @@ function Sidebar({ t, onCert, mounted }) {
           transform:mounted?"scale(1)":"scale(0.8)",
           transition:"all .8s cubic-bezier(.16,1,.3,1) .2s",
         }}>
-          <div style={{width:94,height:94,borderRadius:"50%",background:"linear-gradient(135deg,#5a8db5,#2b5f8a)",padding:3,boxShadow:"0 0 28px rgba(90,141,181,0.45)"}}>
+          <div style={{width:140,height:140,borderRadius:"50%",background:"linear-gradient(135deg,#5a8db5,#2b5f8a)",padding:3,boxShadow:"0 0 28px rgba(90,141,181,0.45)"}}>
             <img src={PHOTO} alt="Erick Cirilo" style={{width:"100%",height:"100%",borderRadius:"50%",objectFit:"cover",objectPosition:"center top"}}/>
           </div>
-          <div style={{position:"absolute",inset:-5,borderRadius:"50%",border:"1px solid rgba(90,141,181,0.3)",animation:"pulse-ring 3s ease-in-out infinite"}}/>
+          <div style={{position:"absolute",inset:-7,borderRadius:"50%",border:"1px solid rgba(90,141,181,0.3)",animation:"pulse-ring 3s ease-in-out infinite"}}/>
         </div>
       </div>
 
@@ -301,10 +301,10 @@ function Sidebar({ t, onCert, mounted }) {
           </div>
         ))}
         <div style={{marginTop:8,marginBottom:14,fontSize:9,color:"#8aafc4",textAlign:"center",letterSpacing:0.8}}>
-          👇 para ver el certificado
+          <span style={{display:"inline-block",animation:"bounce 1.5s infinite"}}>👇</span> para ver el certificado
         </div>
         <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-          {["PL-900","MB-901","MS-900","AZ-900","IBM Cyber","PMP Track","UCEMA"].map((b,i)=>(
+          {["PL-900","MB-901","MS-900","AZ-900","IBM Cyber","PMP Track"].map((b,i)=>(
             <Badge key={b} label={b} delay={i*55} onOpen={onCert}/>
           ))}
         </div>
@@ -454,6 +454,7 @@ function SummarySection({ t }) {
         borderLeft:`3px solid ${t.accent}`,borderRadius:"0 8px 8px 0",
         opacity:vis?1:0,transform:vis?(hov?"translateX(0) scale(1.08)":"translateX(0)"):"translateX(-12px)",
         transition:"all .7s ease .2s",
+        overflow:"hidden",position:"relative",textAlign:"justify",
       }}>
       Soy un apasionado de la tecnología y el análisis de datos, con más de 15 años de trayectoria en la gestión de proyectos y gobernanza de TI. Mi enfoque principal es la gestión inteligente de datos y la ejecución de proyectos sobre plataformas Microsoft 365 (Power Platform, Azure), siempre cuidando la calidad y el cumplimiento de las normas de privacidad del departamento. Me destaco por mi capacidad de coordinación, trabajo en equipo y un nivel de inglés avanzado, lo que me permite participar en iniciativas en entornos globales con total naturalidad.
     </div>
@@ -468,11 +469,12 @@ function ExperienceSection({ t }) {
       onMouseLeave={() => setHov(false)}
       style={{
         transform:hov?"scale(1.08)":"scale(1)",
-        transformOrigin:"top left",
+        transformOrigin:"center",
         transition:"transform .3s ease",
+        position:"relative",borderRadius:8,
       }}>
       <SecTitle t={t}>Experiencia</SecTitle>
-      <div style={{position:"relative",paddingLeft:18}}>
+      <div style={{position:"relative",paddingLeft:18,textAlign:"justify"}}>
         <div style={{position:"absolute",left:5,top:0,bottom:0,width:1,background:`linear-gradient(to bottom,${t.accent},transparent)`}}/>
         <TLItem t={t} dates="2015 – Presente" company="La Iglesia de Jesucristo de los Santos de los Últimos Días" title="Senior Data Analyst" delay={80}
           bullets={[
@@ -501,11 +503,12 @@ function VolunteerSection({ t }) {
       onMouseLeave={() => setHov(false)}
       style={{
         transform:hov?"scale(1.08)":"scale(1)",
-        transformOrigin:"top left",
+        transformOrigin:"center",
         transition:"transform .3s ease",
+        position:"relative",borderRadius:8,
       }}>
       <SecTitle t={t}>Voluntariado</SecTitle>
-      <div style={{position:"relative",paddingLeft:18}}>
+      <div style={{position:"relative",paddingLeft:18,textAlign:"justify"}}>
         <div style={{position:"absolute",left:5,top:0,bottom:0,width:1,background:`linear-gradient(to bottom,${t.accent},transparent)`}}/>
         <TLItem t={t} dates="2019 – 2022" company="Fundación Roble del Sur" title="Volunteer Experience — Digital Strategy" delay={240}
           bullets={[
@@ -530,11 +533,12 @@ function ReferencesSection({ t, mobile }) {
       onMouseLeave={() => setHov(false)}
       style={{
         transform:hov?"scale(1.08)":"scale(1)",
-        transformOrigin:"top left",
+        transformOrigin:"center",
         transition:"transform .3s ease",
+        position:"relative",borderRadius:8,
       }}>
       <SecTitle t={t}>Referencias</SecTitle>
-      <div style={{display:"grid",gridTemplateColumns:mobile?"1fr":"1fr 1fr",gap:14}}>
+      <div style={{display:"grid",gridTemplateColumns:mobile?"1fr":"1fr 1fr",gap:14,textAlign:"justify"}}>
         <RefCard t={t} name="Leonel Zivic" role="LUF Manager • FRD" phone="+54(911)3848 5388" email="zivicle@churchofjesuschrist.org" delay={100}/>
         <RefCard t={t} name="Jeffrey Kay Anderson" role="Dir, Member & Stat Record • FRD" phone="+1 801 240-9751" email="jkanderson@churchofjesuschrist.org" delay={220}/>
       </div>
@@ -713,6 +717,7 @@ export default function CV() {
         @keyframes fadeIn { from{opacity:0} to{opacity:1} }
         @keyframes slideUp { from{opacity:0;transform:translateY(24px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
         @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes bounce { 0%{transform:translateY(0)} 50%{transform:translateY(8px)} 100%{transform:translateY(0)} }
         *{box-sizing:border-box}
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-track{background:transparent}
